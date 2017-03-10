@@ -1,0 +1,12 @@
+questions.txt
+
+Computer Science 50
+Problem Set 3
+
+0. The game allows anything from 3x3 to 9x9 game boards.
+
+1. The board is represented by a 2D array.
+
+2. Players are greeted by the "greet()" function.
+
+3. I need to implement init(), draw(), move(), and won().

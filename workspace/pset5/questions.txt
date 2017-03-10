@@ -1,0 +1,78 @@
+0.  pneumonoultramicroscopicsilicovolcanoconiosis - an artificial long word said 
+    to mean a lung disease caused by inhaling very fine ash and sand dust.
+    
+    Also known as "silicosis"
+    
+    source:
+    https://web.archive.org/web/20120719114141/http://oxforddictionaries.com/definition/english/pneumonoultramicroscopicsilicovolcanoconiosis
+
+1.  Getrusage tests the resource usage of a function or program, and stores them
+    in a struct.
+
+2.  16
+
+3.  The struct "rusage" is larger than a pointer, so it's faster to pass a pointer than
+    a struct.
+
+4.  The loop is initiated with fgetc, and repeats fgetc as its increment. The loop ends when fgetc
+    returns an EOF character.
+    
+    The loop goes through 3 condition statements that tell the program what to do with letters, numbers, and others.
+    
+    Condition 1 handles letters by appending "c" (character read when loop increments) to an array 
+    "word" at position "index". "Index" is set to 0 before the loop begins, and is incremented each
+    time a letter is added to array "word." "Word" is initialized before the loop starts so it can
+    hold the maximum acceptable number of letters. If "word" exceeds the maximum length of a word in
+    the dictionary, a nested loop iterates until a non-letter value is found so we can start
+    searching for another word. The condition then resets "index" to 0 and goes back to the top of
+    the loop.
+    
+    Condition 2 handles numbers. This condition assumes (rightly) that any set of characters containing
+    a number is not a word in the dictionary. It iterates through characters in the file until a
+    non-number is found, sets index back to 0, and restarts the outer loop.
+    
+    Condition 3 executes when a non alphanumeric character is found. This condition adds a NULL character
+    to the current "word" array, making it readable as a string. It then increments the counter of "words"
+    found in the document being scanned. The string "word" is then passed to a function "check" to see if
+    it is misspelled. The bool misspelled is initialized as a true/false value showing whether the current
+    word is mispelled. If the word is misspelled, the string is printed to the command line and the value
+    "misspelled" is incremented to store the total number of misspelled words in the document. A final line
+    resets "index" to 0 so the outer loop can resume looking for the next word.
+    
+    Finally, the loop checks for file read errors. If an error is found, it is printed to the command line
+    for debugging purposes.
+
+5.  Using fscanf to read entire blocks of characters at a time may seem to save resources, but it makes
+    parsing corner cases more difficult. In the case where a word is at the beginning of a quote, or if
+    an apostrophe is used to show possession or in a contraction, that then has to be modified to be sent
+    to the "check" function. By inputting one character at a time, speller can check for these cases
+    immediately rather than having to implement an additional string-parsing function.
+
+6.  "Word" and "Dictionary" should not be modified by the functions "check" and "load" respectively.
+    Declaring them as constant prevents the user from accidentally modifying these strings, which could
+    result in errors when executing speller.
+
+7.  I used a trie where each node has a true/false value "is_word" and an array of node pointers pointing
+    to 27 children. 1 for each letter of the alphabet, and 1 for an apostrophe.
+
+8.  I switched all of my return values to true early on so I could speed-test as I went. I started testing
+    after only implementing "Load" and "Check." 
+    I got "Load" down from .12 seconds to .07 seconds. 
+    I got "Check" down significantly to where I consistently beat the staff solution. It ended up around .2 
+    seconds for "War and Peace." 
+    "Size" was always 0.
+    I am stuck on .06 seconds for unload. I can't get anything to speed it up.
+
+9.  The main thing I did was look for places where I was checking for conditions unnecessarily. If a statement
+    was written "if (condition and/or condition)" I tried to just do "if (condition)." If a value was being cast
+    
+
+10. Both my "load" and "unload" are slow. I think my "load" is slow because I'm iterating through the
+    dictionary character by character instead of line by line, but if I go through line by line I still
+    will have to go through each word character by character. I want to try a Radix Tree structure
+    to see if that speeds things up significantly, but I need to keep moving through this course to stay
+    motivated. Once I reach then end of CS50x if this is still bugging me I'll come back to it.
+    
+    I don't know why my "unload" is slow unless it's just because I'm storing the Trie character by
+    character instead of using prefixes/suffixes. Again, I'm going to come back to this later on if
+    there's time. For now I'm happy with a working build that scores within 10% of the staff solution.

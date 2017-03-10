@@ -1,0 +1,100 @@
+/**
+ * styles.css
+ *
+ * Computer Science 50
+ * Problem Set 7
+ *
+ * Global CSS.
+ */
+
+.container
+{
+    /* center contents */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+#top
+{
+    /* surround with whitespace */
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+#top .nav
+{
+    /* center navigation pills */
+    display: inline-block;
+}
+
+#middle .form-control
+{
+    /* center form controls */
+    display: inline-block;
+
+    /* override Bootstrap's 100% width for form controls */
+    width: auto;
+}
+
+#bottom
+{
+    /* shrink bottom's font size */
+    font-size: smaller;
+
+    /* surround with whitespace */
+    margin: 20px;
+}
+
+table
+{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: ridge;
+}
+
+td
+{
+    font: courier;
+    text-align: center;
+    font-size: 20px;
+    border-right: thin solid;
+    border-left: thin solid;
+    border-collapse: collapse;
+    padding: 6px;
+}
+
+/* reference: http://codepen.io/alassetter/pen/cyrfB */
+
+tr:hover td 
+{
+  background:#4E5066;
+  color:#FFFFFF;
+  border-collapse: collapse;
+}
+
+tr:nth-child(even) td
+{
+    background: #E0E0E0;
+}
+
+tr:nth-child(even):hover td
+{
+    background:#4E5066;
+    color:#FFFFFF;
+    border-collapse: collapse;
+}
+
+.top_row
+{
+    border-style: ridge;
+    background:#4E5066;
+    color:#FFFFFF;
+}
+
+.bottom_row
+{
+    border-style: ridge;
+    
+}

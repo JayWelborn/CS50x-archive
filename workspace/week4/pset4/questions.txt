@@ -1,0 +1,63 @@
+0.  Colors supported by file type:
+    BMP - Depends on the bits per pixel.
+          Most commonly 24-bit BMPs ahve 16.7 million colors,
+          but bmps contain 2^n colors where n is the number of bits per pixel.
+    GIF - 256 colors
+    JPG - 16.7 million colors
+    PNG - 16.7 million colors
+    
+1.  GIF
+
+2.  "Lossy" compression means the original data cannot be recovered when the file is decompressed.
+    "Lossless" compression means the data can be fully recovered on decompression.
+    
+3.  JPGs always use lossy compression, and PNGs can depending on the decoder used.
+
+4.  When a file is "deleted" on a FAT file system, its header is replaced by information
+    marking the space as "free" or available to be overwritten. The actual data from the
+    file stays unless expressly overwritten later.
+    
+5.  I can overwrite all available space on a drive with NULL values to ensure they are
+    practically safe from being recovered.
+    
+6.  stdint.h is a header file for a library of functions related to integers. It lets you work
+    on fixed-width integers, and lets you declare signed/unsigned integers depending on what
+    values you need to store.
+    
+7.  UINTX_t tells the program you need an unsigned integer of X bits. Similarly, INTX_t tells
+    the program you need a signed integer of X bits. Unsigned integers are from 0 to 2^n - 1
+    in size, where signed integers have the same range but can include negative values. 
+    
+    Ex: UINT8_t can store 0->255. INT8_t can store from -128 -> +127.
+
+8.  BYTE - 1 Byte (8 bits)
+    DWORD - 4 Bytes (32 bits)
+    LONG - 4 Bytes (32 bits)
+    WORD - 2 Bytes (16 bits)
+
+9.  0x42 0x4D in hex, or BM in ASCII
+
+10. bfSize is the size of the File Header, and biSize is the size of the Info Header.
+
+11. If biHeight is negative, the bitmap is written "top-down" and begins at the upper left corner.
+
+12. biBitCount
+
+13. If a file doesn't exist, you don't have permission to write to it, or you don't have permission
+    to open it, fopen can return NULL.
+
+14. The third argument in fread is 1 because you are reading only 1 "member" of the specified size.
+    Specifically, the BMP only has 1 header, so you only need to read 1 element that's the size of
+    the file/info header.
+
+15. If bitmaps are not of a width that is divisible by 4, they add "padding" or null values to fill
+    the space that would be taken up by the 4th column of pixels. Copy therefore adds padding if 
+    the width is 3.
+
+16. Fseek moves the position in the file by the # of bytes indicated in argument 2, relative to the
+    position specified in argument 3.
+    
+17. SEEK_CUR is one of the 3 constants used in fseek for argument 3. It tells the program to move
+    the position (argument 2) bytes from the current position in the file.
+
+18. Rick #@&^ing Astley.
